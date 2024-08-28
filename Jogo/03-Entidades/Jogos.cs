@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jogo._03_Entidades
 {
-    internal class Jogos
+    public class Jogos
     {
     }
 }
