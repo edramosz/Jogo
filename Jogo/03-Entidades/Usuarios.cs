@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Jogo._03_Entidades
 {
-    public class Generos
+    public class Usuarios
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public int Idade { get; set; }
+        public string Senha { get; set; }
     }
 }
