@@ -21,7 +21,22 @@ namespace Jogo._03_Entidades.data
                  CREATE TABLE IF NOT EXISTS Jogos(
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
-                    Preco REAL NOT NULL
+                    Preco REAL NOT NULL,
+                    GeneroId INTEGER NOT NULL
+                );";
+
+                commandoSQL += @"
+                 CREATE TABLE IF NOT EXISTS Generos(
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL
+                );";
+
+                commandoSQL += @"
+                 CREATE TABLE IF NOT EXISTS Usuarios(
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL,
+                    Idade INTEGER NOT NULL,
+                    Senha TEXT NOT NULL
                 );";
 
                 using (var command = new SQLiteCommand(commandoSQL, connection))

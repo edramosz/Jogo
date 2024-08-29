@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Jogo._03_Entidades
 {
-    public class Usuarios
+    public class Game
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int Idade { get; set; }
-        public string Senha { get; set; }
+        public double Preco { get; set; }
+        public string Descricao { get; set; }
+        public int GeneroId { get; set; }
+
     }
 }
