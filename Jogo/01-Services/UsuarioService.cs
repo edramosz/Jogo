@@ -12,6 +12,10 @@ namespace Jogo._01_Services
     public class UsuarioService
     {
         public UsuarioRepository repository { get; set; }
+        public UsuarioService(string connectionString)
+        {
+            repository = new UsuarioRepository(connectionString);
+        }
         public void Adicionar(Usuario Usuario)
         {
             repository.Adicionar(Usuario);

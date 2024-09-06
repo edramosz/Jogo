@@ -1,4 +1,5 @@
-﻿using Jogo._03_Entidades;
+﻿using Dapper.Contrib.Extensions;
+using Jogo._03_Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -10,103 +11,38 @@ namespace Jogo._02_Repository
 {
     public class UsuarioRepository
     {
-        public const string ConnectionString = "Data Source=LojaJogo.db";
+        public readonly string ConnectionString;
 
-        public void Adicionar(Usuario u)
+        public UsuarioRepository(string connectionString)
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                string comandInsert = @"INSERT INTO Usuarios(Nome, Idade, Senha) VALUES (@Nome, @Idade, @Senha)";
+            ConnectionString = connectionString;
+        }
 
-                using (var command = new SQLiteCommand(comandInsert, connection))
-                {
-                    command.Parameters.AddWithValue("@Nome", u.Nome);
-                    command.Parameters.AddWithValue("@Preco", u.Idade);
-                    command.Parameters.AddWithValue("@Descricao", u.Senha);
-                    command.ExecuteNonQuery();
-                }
-            }
+        public void Adicionar(Usuario g)
+        {
+            using var connection = new SQLiteConnection(ConnectionString);
+            connection.Insert<Usuario>(g);
         }
         public void Remover(int id)
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                string deleteCommand = "DELETE FROM Usuarios WHERE Id = @Id";
-                using (var command = new SQLiteCommand(deleteCommand, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
-                    command.ExecuteNonQuery();
-                }
-            }
+            using var connection = new SQLiteConnection(ConnectionString);
+            Usuario novoUsuario = BuscarUsuarioPorId(id);
+            connection.Delete<Usuario>(novoUsuario);
         }
-        public void Editar(int id, Usuario u)
+        public void Editar(int id, Usuario g)
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                string updateCommand = @"UPDATE Usuarios
-                                   SET Nome = @Nome, Idade = @Idade, Senha = @Senha
-                                   WHERE Id = @Id";
-                using (var command = new SQLiteCommand(updateCommand, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
-                    command.Parameters.AddWithValue("@Nome", u.Nome);
-                    command.Parameters.AddWithValue("@Idade", u.Idade);
-                    command.Parameters.AddWithValue("@Senha", u.Senha);
-                    command.ExecuteNonQuery();
-                }
-            }
+            using var connection = new SQLiteConnection(ConnectionString);
+            connection.Update<Usuario>(g);
         }
         public List<Usuario> Listar()
         {
-            List<Usuario> usuarios = new List<Usuario>();
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                string selectCommand = "SELECT Id, Nome, Idade, Senha FROM Usuarios";
-                using (var command = new SQLiteCommand(selectCommand, connection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Usuario u = new Usuario();
-                            u.Id = int.Parse(reader["Id"].ToString());
-                            u.Nome = reader["Nome"].ToString();
-                            u.Idade = int.Parse(reader["Idade"].ToString());
-                            u.Senha = reader["Senha"].ToString();
-                            usuarios.Add(u);
-                        }
-                    }
-                }
-                return usuarios;
-            }
+            using var connection = new SQLiteConnection(ConnectionString);
+            return connection.GetAll<Usuario>().ToList();
         }
         public Usuario BuscarUsuarioPorId(int id)
         {
-            Usuario u = new Usuario();
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                string selectCommand = "SELECT Id, Nome, Idade, Senha FROM Usuarios WHERE Id = @Id";
-                using (var command = new SQLiteCommand(selectCommand, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            u.Id = int.Parse(reader["Id"].ToString());
-                            u.Nome = reader["Nome"].ToString();
-                            u.Idade = int.Parse(reader["Idade"].ToString());
-                            u.Senha = reader["Senha"].ToString();
-                        }
-                    }
-                }
-            }
-            return u;
+            using var connection = new SQLiteConnection(ConnectionString);
+            return connection.Get<Usuario>(id);
         }
     }
 }

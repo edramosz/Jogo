@@ -12,7 +12,7 @@ namespace Jogo._03_Entidades
         public string Nome { get; set; }
         public double Preco { get; set; }
         public string Descricao { get; set; }
-        public int GeneroId { get; set; }
+        public string Genero { get; set; }
 
     }
 }

@@ -9,8 +9,11 @@ namespace JogoAPI.Controllers
     public class UsuarioController : ControllerBase
     {
         private UsuarioService _service;
-
-        public IEnumerable<Usuario> Usuarios { get; private set; }
+        public UsuarioController(IConfiguration config)
+        {
+            string connectionString = config.GetConnectionString("DefaultConnection");
+            _service = new UsuarioService(connectionString);
+        }
 
         [HttpPost("Adicionar-Usuario")]
 

@@ -9,8 +9,13 @@ namespace JogoAPI.Controllers
     public class GameController : ControllerBase
     {
         private GameService _service;
+        public readonly string _connectionString;
 
-        public IEnumerable<Game> Games { get; private set; }
+        public GameController(IConfiguration config)
+        {
+            string connectionString = config.GetConnectionString("DefaultConnection");
+            _service = new GameService(connectionString);
+        }
 
         [HttpPost("Adicionar-Game")]
 

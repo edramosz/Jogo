@@ -11,6 +11,10 @@ namespace Jogo._01_Services
     public class GameService
     {
         public GameRepository repository { get; set; }
+        public GameService(string connectionString) 
+        {
+            repository= new GameRepository(connectionString);
+        }
         public void Adicionar(Game Game)
         {
             repository.Adicionar(Game);
