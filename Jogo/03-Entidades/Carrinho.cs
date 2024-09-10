@@ -10,7 +10,10 @@ namespace Jogos._03_Entidades
 {
     public class Carrinho
     {
-        List<Game> carrinho = new List<Game>();
 
+        public int Id { get; set; }
+        public int IdCliente { get; set; }
+        public double Soma { get; set; }
+        public List<ItemCompra> ItensCompra { get; set; }
     }
 }
