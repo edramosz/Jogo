@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jogo._03_Entidades
+namespace CRUD._03_Entidades
 {
-    public class Game
+    public class Cliente
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public double Preco { get; set; }
-        public string Descricao { get; set; }
-        public string Genero { get; set; }
-
+        public int Idade { get; set; }
+        public string Senha { get; set; }
     }
 }

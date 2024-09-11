@@ -1,48 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SQLite;
+using CRUD._03_Entidades;
 using Dapper.Contrib.Extensions;
-using Jogo._03_Entidades;
 
-namespace Jogo._02_Repository
+namespace CRUD._02_Repository
 {
-    public class GameRepository
+    public class JogoRepository
     {
         public readonly string ConnectionString;
 
-        public GameRepository(string connectionString)
+        public JogoRepository(string connectionString)
         {
             ConnectionString = connectionString;
         }
 
-        public void Adicionar(Game g)
+        public void Adicionar(Jogo g)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            connection.Insert<Game>(g);
+            connection.Insert<Jogo>(g);
         }
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            Game novoProduto = BuscarGamePorId(id);
-            connection.Delete<Game>(novoProduto);
+            Jogo novoProduto = BuscarJogoPorId(id);
+            connection.Delete<Jogo>(novoProduto);
         }
-        public void Editar(int id, Game g)
+        public void Editar(int id, Jogo g)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            connection.Update<Game>(g);
+            connection.Update<Jogo>(g);
         }
-        public List<Game> Listar()
+        public List<Jogo> Listar()
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            return connection.GetAll<Game>().ToList();
+            return connection.GetAll<Jogo>().ToList();
         }
-        public Game BuscarGamePorId(int id)
+        public Jogo BuscarJogoPorId(int id)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            return connection.Get<Game>(id);
+            return connection.Get<Jogo>(id);
         }
     }
 }

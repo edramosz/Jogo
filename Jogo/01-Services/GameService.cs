@@ -1,23 +1,18 @@
-﻿using Jogo._02_Repository;
-using Jogo._03_Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CRUD._02_Repository;
+using CRUD._03_Entidades;
 
-namespace Jogo._01_Services
+namespace CRUD._01_Services
 {
-    public class GameService
+    public class JogoService
     {
-        public GameRepository repository { get; set; }
-        public GameService(string connectionString) 
+        public JogoRepository repository { get; set; }
+        public JogoService(string connectionString) 
         {
-            repository= new GameRepository(connectionString);
+            repository= new JogoRepository(connectionString);
         }
-        public void Adicionar(Game Game)
+        public void Adicionar(Jogo Jogo)
         {
-            repository.Adicionar(Game);
+            repository.Adicionar(Jogo);
         }
 
         public void Remover(int id)
@@ -25,19 +20,19 @@ namespace Jogo._01_Services
             repository.Remover(id);
         }
 
-        public void Editar(int id, Game editGame)
+        public void Editar(int id, Jogo editJogo)
         {
-            repository.Editar(id, editGame);
+            repository.Editar(id, editJogo);
         }
 
-        public List<Game> Listar()
+        public List<Jogo> Listar()
         {
             return repository.Listar();
         }
 
-        public Game BuscarGamePorId(int id)
+        public Jogo BuscarJogoPorId(int id)
         {
-            return repository.BuscarGamePorId(id);
+            return repository.BuscarJogoPorId(id);
         }
     }
 }

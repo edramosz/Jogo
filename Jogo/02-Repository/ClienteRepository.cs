@@ -1,5 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
-using Jogo._03_Entidades;
+﻿using CRUD._03_Entidades;
+using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -7,42 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jogo._02_Repository
+namespace CRUD._02_Repository
 {
-    public class UsuarioRepository
+    public class ClienteRepository
     {
         public readonly string ConnectionString;
 
-        public UsuarioRepository(string connectionString)
+        public ClienteRepository(string connectionString)
         {
             ConnectionString = connectionString;
         }
 
-        public void Adicionar(Usuario g)
+        public void Adicionar(Cliente g)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            connection.Insert<Usuario>(g);
+            connection.Insert<Cliente>(g);
         }
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            Usuario novoUsuario = BuscarUsuarioPorId(id);
-            connection.Delete<Usuario>(novoUsuario);
+            Cliente novoCliente = BuscarClientePorId(id);
+            connection.Delete<Cliente>(novoCliente);
         }
-        public void Editar(int id, Usuario g)
+        public void Editar(int id, Cliente g)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            connection.Update<Usuario>(g);
+            connection.Update<Cliente>(g);
         }
-        public List<Usuario> Listar()
+        public List<Cliente> Listar()
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            return connection.GetAll<Usuario>().ToList();
+            return connection.GetAll<Cliente>().ToList();
         }
-        public Usuario BuscarUsuarioPorId(int id)
+        public Cliente BuscarClientePorId(int id)
         {
             using var connection = new SQLiteConnection(ConnectionString);
-            return connection.Get<Usuario>(id);
+            return connection.Get<Cliente>(id);
         }
     }
 }

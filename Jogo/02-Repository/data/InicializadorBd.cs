@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jogo._03_Entidades.data
+namespace CRUD._03_Entidades.data
 {
     public class InicializadorBd
     {
@@ -15,7 +15,7 @@ namespace Jogo._03_Entidades.data
             //Criando conexão
             using var connection = new SQLiteConnection("Data Source=LojaJogo.db");//parâmetros da criação, nome e senha são dois exemplos
                 string commandoSQL = @"
-                 CREATE TABLE IF NOT EXISTS Games(
+                 CREATE TABLE IF NOT EXISTS Jogos(
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
                     Preco REAL NOT NULL,
@@ -24,7 +24,7 @@ namespace Jogo._03_Entidades.data
                 );";
 
                 commandoSQL += @"
-                 CREATE TABLE IF NOT EXISTS Usuarios(
+                 CREATE TABLE IF NOT EXISTS Clientes(
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
                     Idade INTEGER NOT NULL,

@@ -1,54 +1,59 @@
-﻿using Jogo._01_Services;
-using Jogo._03_Entidades;
+﻿using AutoMapper;
+using CRUD._01_Services;
+using CRUD._03_Entidades;
+using CRUD._03_Entidades.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JogoAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GameController : ControllerBase
+    public class JogoController : ControllerBase
     {
-        private GameService _service;
+        private JogoService _service;
         public readonly string _connectionString;
+        private readonly IMapper _mapper;
 
-        public GameController(IConfiguration config)
+        public JogoController(IMapper mapper, IConfiguration config)
         {
             string connectionString = config.GetConnectionString("DefaultConnection");
-            _service = new GameService(connectionString);
+            _service = new JogoService(connectionString);
+            _mapper = mapper;
         }
 
-        [HttpPost("Adicionar-Game")]
+        [HttpPost("Adicionar-Jogo")]
 
-        public void AdicionarGame(Game t)
+        public void AdicionarJogo(CreateJogoDTO t)
         {
-            _service.Adicionar(t);
+            Jogo jogo= _mapper.Map<Jogo>(t);          
+            _service.Adicionar(jogo);
         }
-        [HttpGet("Listar-Game")]
+        [HttpGet("Listar-Jogo")]
 
-        public List<Game> ListarGame()
+        public List<Jogo> ListarJogo()
         {
             return _service.Listar();
         }
 
-        [HttpDelete("Remover-Game")]
+        [HttpDelete("Remover-Jogo")]
 
-        public void DeletarGame(int id)
+        public void DeletarJogo(int id)
         {
             _service.Remover(id);
         }
 
-        [HttpPut("Editar-Game")]
+        [HttpPut("Editar-Jogo")]
 
-        public void EditarGame(int id, Game Game)
+        public void EditarJogo(int id, Jogo Jogo)
         {
-            _service.Editar(id, Game);
+            _service.Editar(id, Jogo);
         }
 
-        [HttpGet("Buscar-Game-por-Id")]
+        [HttpGet("Buscar-Jogo-por-Id")]
 
-        public Game BuscarPorId(int id)
+        public Jogo BuscarPorId(int id)
         {
-            return _service.BuscarGamePorId(id);
+            return _service.BuscarJogoPorId(id);
         }
     }
 }
