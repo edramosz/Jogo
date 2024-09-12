@@ -11,10 +11,10 @@ namespace CRUD._02_Repository
     public class BibliotecaRepository
     {
         public readonly string ConnectionString;
-        public Biblioteca ListarBibliotecaPorId(int IdBiblioteca)
-        {
-            using var connection = new SQLiteConnection(ConnectionString);
-            return connection.Get<Biblioteca>(IdBiblioteca);
-        }
+        //public Biblioteca ListarBibliotecaPorId(int Id)
+        //{
+        //    using var connection = new SQLiteConnection(ConnectionString);
+        //    return connection.Get<>(Id);
+        //}
     }
 }
