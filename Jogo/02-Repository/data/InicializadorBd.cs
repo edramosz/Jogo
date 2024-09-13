@@ -30,7 +30,21 @@ namespace CRUD._03_Entidades.data
                     Idade INTEGER NOT NULL,
                     Senha TEXT NOT NULL
                 );";
-                connection.Execute(commandoSQL);
+
+                //commandoSQL += @"
+                // CREATE TABLE IF NOT EXISTS Bibliotecas(
+                //    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                //    Id_Cliente INTEGER,
+
+                //    FOREIGN KEY (Id_Cliente) REFERENCES Clientes (Id)
+                //);";
+
+            //commandoSQL += @"
+            // CREATE TABLE IF NOT EXISTS Compras(
+            //    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            //);";
+            connection.Execute(commandoSQL);
             }
         }
     }
