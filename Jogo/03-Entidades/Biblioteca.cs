@@ -10,6 +10,6 @@ namespace CRUD._03_Entidades
     {
         public int Id { get; set; }
         public int IdCliente { get; set; }
-        public List<Jogo> JogosComprados { get; set; }
+        public List<Jogo> biblioteca { get; set; }
     }
 }

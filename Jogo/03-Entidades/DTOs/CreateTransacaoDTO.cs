@@ -9,7 +9,9 @@ namespace CRUD._03_Entidades.DTOs
 {
     public class CreateTransacaoDTO
     {
+        public int Id { get; set; }
         public int IdCompra { get; set; }
+        public Compra Compra { get; set; }
         public DataType Data { get; set; }
         public int Parcelamento { get; set; }
         public string MetodoPagamento { get; set; }

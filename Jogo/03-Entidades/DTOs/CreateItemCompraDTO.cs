@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace CRUD._03_Entidades.DTOs
 {
-    public class CreateCompraDTO
+    public class CreateItemCompraDTO
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
+        public int JogoId { get; set; }
+        public Jogo Jogo { get; set; }
+        public int CarrinhoId { get; set; }
         public Carrinho Carrinho { get; set; }
-        public Transacao Transacao { get; set; }
     }
 }
