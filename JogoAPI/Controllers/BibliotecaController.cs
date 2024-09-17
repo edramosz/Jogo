@@ -17,7 +17,7 @@ namespace JogoAPI.Controllers
         public BibliotecaController(IMapper mapper, IConfiguration config)
         {
             string connectionString = config.GetConnectionString("DefaultConnection");
-            _service = new BibliotecaService(connectionString, _mapper);
+            _service = new BibliotecaService(connectionString, mapper);
             _mapper = mapper;
         }
 

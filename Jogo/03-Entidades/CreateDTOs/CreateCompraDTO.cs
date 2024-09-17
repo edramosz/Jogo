@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace CRUD._03_Entidades.DTOs
 {
     public class CreateCompraDTO
-    {
-        public int Id { get; set; }
-        public Carrinho Carrinho { get; set; }
-        public Transacao Transacao { get; set; }
+    {      
+        public int IdCarrinho { get; set; }
+        public int IdTransacao { get; set; }
+        public int IdCliente { get; set; }
     }
 }
